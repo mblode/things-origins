@@ -1,12 +1,12 @@
 import React from 'react';
-import TodoForm from '../todo/TodoForm';
+import Add from '../todo/Add';
 import TodoList from '../todo/TodoList';
 
 const Inbox = (props) => {
   return (
     <div>
       <h3 className="list-title">Inbox</h3>
-      <TodoForm addTodo={props.addTodo} statusVal="Inbox" />
+      <Add addTodo={props.addTodo} statusVal="Inbox" />
       <TodoList
         todos={props.todos}
         completeTodo={props.completeTodo}
