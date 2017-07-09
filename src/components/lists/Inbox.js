@@ -1,19 +1,30 @@
 import React from 'react';
-import Todo from '../Todo';
+import TodoForm from '../todo/TodoForm';
+import TodoList from '../todo/TodoList';
 
 const Inbox = (props) => {
   return (
     <div>
-      <h3>Inbox</h3>
-      <ul>
+      <h3 className="list-title">Inbox</h3>
+
+      <TodoForm addTodo={props.addTodo} statusVal="Inbox" />
+
+      <div className="todo-list">
         {
           Object.keys(props.todos)
           .filter(key => props.todos[key].completed === false)
           .filter(key => props.todos[key].archived === false)
-          .filter(key => props.todos[key].status === 'inbox')
-          .map(key => <Todo key={key} index={key} details={props.todos[key]} completeTodo={props.completeTodo} archiveTodo={props.archiveTodo} dataChanged={props.dataChanged} changeStatus={props.changeStatus} />)
+          .filter(key => props.todos[key].status === 'Inbox')
+          .map(key => (<Todo
+            key={key}
+            index={key}
+            details={props.todos[key]}
+            completeTodo={props.completeTodo}
+            archiveTodo={props.archiveTodo}
+            handleChange={props.handleChange}
+          />))
         }
-      </ul>
+      </div>
     </div>
   );
 };

@@ -6,10 +6,11 @@
     "re-base": "^3.0.2",
     "react": "^15.6.1",
     "react-dom": "^15.6.1",
-    "react-edit-inline": "^1.0.8",
+    "react-onclickoutside": "^6.1.1",
     "react-router": "^4.1.1",
     "react-router-dom": "^4.1.1",
     "react-scripts": "1.0.10",
+    "react-textarea-autosize": "^5.0.7",
     "riek": "^1.1.0"
   },
   "scripts": {
