@@ -16,7 +16,7 @@ class More extends React.Component {
 
     if (this.props.details.archived === false) {
       select = (<select
-        onChange={e => this.props.handleChange(this.props.index, e.target.value, 'status')}
+        onChange={(e) => {this.props.handleChange(this.props.index, e.target.value, 'status')} }
         value={this.props.details.status}
         className="custom-select mr-2"
       >
@@ -35,7 +35,7 @@ class More extends React.Component {
           value={this.props.details.notes}
           className="todo-notes"
           ref={(input) => { this.notes = input; }}
-          onChange={e => this.props.handleChange(this.props.index, e.target.value, 'notes')}
+          onChange={(e) => {this.props.handleChange(this.props.index, e.target.value, 'notes')} }
         />
 
         {select}

@@ -7,25 +7,23 @@ const TodoList = (props) => {
     <div className="todo-list">
       {
         Object.keys(props.todos)
-        .filter(function (key) {
-          let completed = null;
-          let archived = null;
-
-          console.log(props.timeVal);
-
-          if (props.completedVal !== 'undefined') {
-            completed = props.todos[key].completed === false;
-          } else {
-            completed = props.todos[key].completed === props.completedVal;
+        .filter((key) => {
+          if (props.completedVal === undefined) {
+            return props.todos[key].completed === false;
           }
 
-          if (props.archivedVal !== 'undefined') {
-            archived = props.todos[key].archived === false;
-          } else {
-            archived = props.todos[key].archived === props.archivedVal;
+          return props.todos[key].completed === props.completedVal;
+        }).filter((key) => {
+          if (props.archivedVal === undefined) {
+            return props.todos[key].archived === false;
           }
 
-          return completed && archived && props.todos[key].status === props.statusVal;
+          return props.todos[key].archived === props.archivedVal;
+        }).filter((key) => {
+          if (props.statusVal === 'Logbook' || props.statusVal === 'Trash') {
+            return props.todos[key];
+          }
+          return props.todos[key].status === props.statusVal;
         })
         .map(key => (<Todo
           key={key}

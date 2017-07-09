@@ -3,6 +3,41 @@ import { NavLink } from 'react-router-dom';
 
 class Header extends React.Component {
   render () {
+    let logbook = null;
+    const lengthLogbook = (
+      Object.keys(this.props.todos)
+      .filter(key => this.props.todos[key].completed === true)
+      .filter(key => this.props.todos[key].archived === false)
+      .map(key => this.props.todos[key])
+      .length
+    );
+    if (lengthLogbook !== 0) {
+      logbook = (
+        <li className="nav-item">
+          <NavLink to="/Logbook">
+            <span className="nav-link">Logbook</span>
+          </NavLink>
+        </li>
+      );
+    }
+
+    let trash = null;
+    const lengthTrash = (
+      Object.keys(this.props.todos)
+      .filter(key => this.props.todos[key].archived === true)
+      .map(key => this.props.todos[key])
+      .length
+    );
+    if (lengthTrash !== 0) {
+      trash = (
+        <li className="nav-item">
+          <NavLink to="/Trash">
+            <span className="nav-link">Trash</span>
+          </NavLink>
+        </li>
+      );
+    }
+
     return (
       <section className="nav-cont">
         <div className="row">
@@ -33,16 +68,8 @@ class Header extends React.Component {
                       <span className="nav-link">Someday</span>
                     </NavLink>
                   </li>
-                  <li className="nav-item">
-                    <NavLink to="/Logbook">
-                      <span className="nav-link">Logbook</span>
-                    </NavLink>
-                  </li>
-                  <li className="nav-item">
-                    <NavLink to="/Trash">
-                      <span className="nav-link">Trash</span>
-                    </NavLink>
-                  </li>
+                  {logbook}
+                  {trash}
                 </ul>
               </nav>
             </header>

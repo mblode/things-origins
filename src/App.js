@@ -38,26 +38,26 @@ class App extends React.Component {
     base.removeBinding(this.ref);
   }
 
-  addTodo(todo) {
+  addTodo = (todo) => {
     const todos = { ...this.state.todos };
     const timestamp = Date.now();
     todos[`todo-${timestamp}`] = todo;
     this.setState({ todos });
   }
 
-  completeTodo(key) {
+  completeTodo = (key) => {
     const todos = { ...this.state.todos };
     todos[key].completed = !todos[key].completed;
     this.setState({ todos });
   }
 
-  archiveTodo(key) {
+  archiveTodo = (key) => {
     const todos = { ...this.state.todos };
     todos[key].archived = !todos[key].archived;
     this.setState({ todos });
   }
 
-  handleChange(key, value, type) {
+  handleChange = (key, value, type) => {
     const todos = { ...this.state.todos };
 
     if (type === 'status') {
@@ -73,7 +73,7 @@ class App extends React.Component {
     this.setState({ todos });
   }
 
-  emptyTrash() {
+  emptyTrash = () => {
     const todos = { ...this.state.todos };
     const notArchived = Object.keys(todos)
       .filter(key => todos[key].archived !== true)
@@ -92,7 +92,7 @@ class App extends React.Component {
             <div className="row page-main">
               <div className="col-12">
                 <div className="page-content">
-                  <Route exact path="/" render={() => <Inbox todos={this.state.todos} completeTodo={this.completeTodo} archiveTodo={this.archiveTodo} addTodo={this.addTodo} statusVal="Inbox" />} />
+                  <Route exact path="/" render={() => <Inbox todos={this.state.todos} completeTodo={this.completeTodo} archiveTodo={this.archiveTodo} handleChange={this.handleChange} addTodo={this.addTodo} statusVal="Inbox" />} />
 
                   <Route path="/Today" render={() => <Today todos={this.state.todos} completeTodo={this.completeTodo} archiveTodo={this.archiveTodo} handleChange={this.handleChange} addTodo={this.addTodo} statusVal="Today" />} />
 
