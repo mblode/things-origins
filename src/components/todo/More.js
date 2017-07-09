@@ -22,6 +22,7 @@ class More extends React.Component {
       >
         <option value="Inbox">Inbox</option>
         <option value="Today">Today</option>
+        <option value="Evening">Evening</option>
         <option value="Next">Next</option>
         <option value="Someday">Someday</option>
       </select>);

@@ -9,7 +9,22 @@ const Today = (props) => {
 
       <TodoForm addTodo={props.addTodo} statusVal={props.statusVal} />
 
-      <TodoList todos={props.todos} completeTodo={props.completeTodo} archiveTodo={props.archiveTodo} statusVal={props.statusVal} timeVal="Today" />
+      <TodoList
+        todos={props.todos}
+        completeTodo={props.completeTodo}
+        archiveTodo={props.archiveTodo}
+        handleChange={props.handleChange}
+        statusVal={props.statusVal}
+      />
+
+      <h4 className="list-subtitle">This Evening</h4>
+      <TodoList
+        todos={props.todos}
+        completeTodo={props.completeTodo}
+        archiveTodo={props.archiveTodo}
+        handleChange={props.handleChange}
+        statusVal="Evening"
+      />
     </div>
   );
 };

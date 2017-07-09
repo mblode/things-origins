@@ -6,25 +6,14 @@ const Someday = (props) => {
   return (
     <div>
       <h3 className="list-title">Someday</h3>
-
       <TodoForm addTodo={props.addTodo} statusVal="Someday" />
-
-      <div className="todo-list">
-        {
-          Object.keys(props.todos)
-          .filter(key => props.todos[key].completed === false)
-          .filter(key => props.todos[key].archived === false)
-          .filter(key => props.todos[key].status === 'Someday')
-          .map(key => (<Todo
-            key={key}
-            index={key}
-            details={props.todos[key]}
-            completeTodo={props.completeTodo}
-            archiveTodo={props.archiveTodo}
-            handleChange={props.handleChange}
-          />))
-        }
-      </div>
+      <TodoList
+        todos={props.todos}
+        completeTodo={props.completeTodo}
+        archiveTodo={props.archiveTodo}
+        handleChange={props.handleChange}
+        statusVal={props.statusVal}
+      />
     </div>
   );
 };
