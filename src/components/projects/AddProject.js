@@ -19,7 +19,7 @@ class AddProject extends React.Component  {
 
   render() {
     return (
-      <button className="btn btn-block btn-secondary mb-3 btn-sm" onClick={(e) => this.createProject(e)}>New Project</button>
+      <button className="btn btn-secondary btn-sm add-project" onClick={(e) => this.createProject(e)}>New Project</button>
     );
   }
 }

@@ -2,12 +2,12 @@ import React from 'react';
 import TodoForm from '../todo/TodoForm';
 import TodoList from '../todo/TodoList';
 
-const Next = (props) => {
+const Later = (props) => {
   return (
     <div>
       <div className="page-header">
-        <h3 className="list-title">Next</h3>
-        <TodoForm addTodo={props.addTodo} statusVal="Next" />
+        <h3 className="list-title">Later</h3>
+        <TodoForm addTodo={props.addTodo} statusVal="Later" />
       </div>
       <div className="page-content">
         <TodoList
@@ -23,4 +23,4 @@ const Next = (props) => {
   );
 };
 
-export default Next;
+export default Later;

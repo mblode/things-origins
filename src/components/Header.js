@@ -46,7 +46,6 @@ class Header extends React.Component {
             <header className="nav-sidebar">
               <nav className="nav">
                 <ul className="nav flex-column sidebar-ul">
-                  <AddProject addProject={this.props.addProject} />
                   <li className="nav-item mb-3">
                     <NavLink exact to="/">
                       <span className="nav-link">Inbox</span>
@@ -63,6 +62,12 @@ class Header extends React.Component {
                     <NavLink to="/Next">
                       <span className="nav-link">Next</span>
                       <ListLength todos={this.props.todos} status="Next" />
+                    </NavLink>
+                  </li>
+                  <li className="nav-item">
+                    <NavLink to="/Later">
+                      <span className="nav-link">Later</span>
+                      <ListLength todos={this.props.todos} status="Later" />
                     </NavLink>
                   </li>
                   <li className="nav-item mb-3">
@@ -83,8 +88,10 @@ class Header extends React.Component {
                       </li>
                     ))
                   }
+                  <AddProject addProject={this.props.addProject}/>
                 </ul>
               </nav>
+
             </header>
           </div>
         </div>

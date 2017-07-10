@@ -1,6 +1,5 @@
 import React from 'react';
 import onClickOutside from 'react-onclickoutside';
-import keydown from 'react-keydown';
 
 import More from './More';
 
@@ -14,11 +13,6 @@ class Todo extends React.Component {
       value: 'select',
       active: false,
     };
-  }
-
-  @keydown(46)
-  toggleHello() {
-    console.log('hello');
   }
 
   handleClickOutside = () => {
@@ -36,10 +30,18 @@ class Todo extends React.Component {
   render() {
     const { details, index } = this.props;
 
+    const string = this.props.projects[`project-${details.project}`];
+    let title = null;
+    if (string === undefined) {
+      title = '';
+    } else {
+      title = string.title;
+    }
+
     return (
       <div className={`todo ${ this.state.active ? 'todo-active' : '' }`} onDoubleClick={this.toggleMore}>
         <div className="todo-main">
-          <input className="todo-check" type="checkbox" checked={details.completed} onChange={() => this.props.completeTodo(index)} />
+          <input className={`todo-check ${title ? 'todo-input-project' : '' }`} type="checkbox" checked={details.complete} onChange={() => this.props.completeTodo(index)} />
           <input
             type="text"
             placeholder="New To-Do"
@@ -47,6 +49,8 @@ class Todo extends React.Component {
             className="todo-input"
             onChange={e => this.props.handleChange(this.props.index, e.target.value, 'text')}
           />
+
+          <span className="project-label">{title}</span>
 
           { this.state.active ? <More projects={this.props.projects} details={details} index={index} archiveTodo={this.props.archiveTodo} active={this.state.active} handleChange={this.props.handleChange} /> : null }
         </div>

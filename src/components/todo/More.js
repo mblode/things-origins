@@ -17,14 +17,7 @@ class More extends React.Component {
     if (this.props.details.archived === false) {
       select = (<select
         onChange={(e) => {
-          if (e.target.value === 'Evening') {
-            this.props.handleChange(this.props.index, e.target.value, 'time');
-          } else if (e.target.value === 'Today') {
-            this.props.handleChange(this.props.index, e.target.value, 'time');
-            this.props.handleChange(this.props.index, e.target.value, 'status');
-          } else {
-            this.props.handleChange(this.props.index, e.target.value, 'status');
-          }
+          this.props.handleChange(this.props.index, e.target.value, 'status');
         } }
         value={this.props.details.status}
         className="custom-select mr-2"
@@ -33,6 +26,7 @@ class More extends React.Component {
         <option value="Today">Today</option>
         <option value="Evening">Evening</option>
         <option value="Next">Next</option>
+        <option value="Later">Later</option>
         <option value="Someday">Someday</option>
       </select>);
     }

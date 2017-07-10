@@ -27,6 +27,7 @@ class TodoForm extends React.Component  {
       notes: this.notes.value,
       text: this.text.value,
       status: statusVar,
+      complete: false,
       completed: false,
       archived: false,
       project: projectVar,

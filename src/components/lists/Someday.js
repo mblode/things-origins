@@ -12,6 +12,7 @@ const Someday = (props) => {
       <div className="page-content">
         <TodoList
           todos={props.todos}
+          projects={props.projects}
           completeTodo={props.completeTodo}
           archiveTodo={props.archiveTodo}
           handleChange={props.handleChange}

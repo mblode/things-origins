@@ -77,7 +77,7 @@ textarea {
 }
 
 .nav-sidebar {
-  background: #f0f0f0;
+  background: #F9FAFA;
   position: fixed;
   padding: 0 16px;
   height: 100%;
@@ -133,6 +133,7 @@ textarea {
   background: #F9FAFA;
   padding: 48px;
   padding-bottom: 16px;
+  border-bottom: 0.5px solid rgba(0, 0, 0, .03);
 }
 
 .list-title {
@@ -185,6 +186,10 @@ textarea {
   background: #d2e3fd;
 }
 
+.todo:focus {
+  background: #F9FAFA;
+}
+
 .todo-active {
   box-shadow: 0 2px 4px rgba(0, 0, 0, .12), 0 1px 6px rgba(0, 0, 0, .08);
   margin-top: 1rem;
@@ -193,6 +198,10 @@ textarea {
 }
 
 .todo-active:hover {
+  background: white;
+}
+
+.todo-active:focus {
   background: white;
 }
 
@@ -206,6 +215,7 @@ textarea {
 }
 
 .todo-notes {
+  background: transparent;
   display: block;
   width: calc(100% - 3rem);
   caret-color: #07C;
@@ -218,4 +228,46 @@ textarea {
 
 .todo-more {
   margin-top: 1rem;
+}
+
+.project-title {
+  font-weight: 500;
+  line-height: 1.1;
+  margin-left: 1rem;
+  border: none;
+  outline: none;
+  caret-color: #07C;
+  font-size: 1.75rem;
+  background: transparent;
+}
+
+.project-label {
+  font-size: 12px;
+  color: rgba(0, 0, 0, .5);
+  display: block;
+  margin-left: 1.45rem;
+  position: relative;
+  top: -0.3rem;
+}
+
+.todo-input-project {
+  position: relative;
+  top: 0.3rem;
+}
+
+.project-notes {
+  background: transparent;
+  display: block;
+  width: calc(100% - 3rem);
+  caret-color: #07C;
+  border: none;
+  margin: 1rem 1rem;
+  padding: 0;
+  outline: 0;
+  resize: none;
+}
+
+.add-project {
+  position: absolute;
+  bottom: 1rem;
 }

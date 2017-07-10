@@ -30,7 +30,7 @@ const TodoList = (props) => {
           if (props.projectVal === undefined) {
             return props.todos[key].project === '';
           }
-          return props.todos[key].projectVal === props.projectValVal;
+          return props.todos[key].project === props.projectVal;
         })
         .map(key => (<Todo
           key={key}
