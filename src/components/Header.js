@@ -86,7 +86,15 @@ const ListLength = (props) => {
       {Object.keys(props.todos)
         .filter(key => props.todos[key].completed === false)
         .filter(key => props.todos[key].archived === false)
-        .filter(key => props.todos[key].status === props.status)
+        .filter(key => {
+          if (props.status === 'Today') {
+            return (
+              props.todos[key].status === 'Today' ||
+              props.todos[key].status === 'Evening'
+            );
+          }
+          return props.todos[key].status === props.status
+        })
         .map(key => props.todos[key])
         .length
       }

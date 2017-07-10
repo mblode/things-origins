@@ -24,6 +24,7 @@ class App extends React.Component {
 
     this.state = {
       todos: {},
+      projects: {},
     };
   }
 
@@ -31,6 +32,11 @@ class App extends React.Component {
     this.ref = base.syncState('/todos', {
       context: this,
       state: 'todos',
+    });
+
+    this.ref = base.syncState('/projects', {
+      context: this,
+      state: 'projects',
     });
   }
 
@@ -42,13 +48,24 @@ class App extends React.Component {
     const todos = { ...this.state.todos };
     const timestamp = Date.now();
     todos[`todo-${timestamp}`] = todo;
+    todos[`todo-${timestamp}`].timestamp = timestamp;
     this.setState({ todos });
   }
 
+  addTodo = (project) => {
+    const projects = { ...this.state.todos };
+    const timestamp = Date.now();
+    projects[`project-${timestamp}`] = project;
+    projects[`project-${timestamp}`].timestamp = timestamp;
+    this.setState({ projects });
+  }
+
   completeTodo = (key) => {
+    setTimeout(() => {
     const todos = { ...this.state.todos };
     todos[key].completed = !todos[key].completed;
     this.setState({ todos });
+    }, 1000);
   }
 
   archiveTodo = (key) => {
@@ -91,19 +108,17 @@ class App extends React.Component {
           <main className="cont">
             <div className="row page-main">
               <div className="col-12">
-                <div className="page-content">
-                  <Route exact path="/" render={() => <Inbox todos={this.state.todos} completeTodo={this.completeTodo} archiveTodo={this.archiveTodo} handleChange={this.handleChange} addTodo={this.addTodo} statusVal="Inbox" />} />
+                <Route exact path="/" render={() => <Inbox todos={this.state.todos} completeTodo={this.completeTodo} archiveTodo={this.archiveTodo} handleChange={this.handleChange} addTodo={this.addTodo} statusVal="Inbox" />} />
 
-                  <Route path="/Today" render={() => <Today todos={this.state.todos} completeTodo={this.completeTodo} archiveTodo={this.archiveTodo} handleChange={this.handleChange} addTodo={this.addTodo} statusVal="Today" />} />
+                <Route path="/Today" render={() => <Today todos={this.state.todos} completeTodo={this.completeTodo} archiveTodo={this.archiveTodo} handleChange={this.handleChange} addTodo={this.addTodo} statusVal="Today" />} />
 
-                  <Route path="/Next" render={() => <Next todos={this.state.todos} completeTodo={this.completeTodo} archiveTodo={this.archiveTodo} handleChange={this.handleChange} addTodo={this.addTodo} statusVal="Next" />} />
+                <Route path="/Next" render={() => <Next todos={this.state.todos} completeTodo={this.completeTodo} archiveTodo={this.archiveTodo} handleChange={this.handleChange} addTodo={this.addTodo} statusVal="Next" />} />
 
-                  <Route path="/Someday" render={() => <Someday todos={this.state.todos} completeTodo={this.completeTodo} archiveTodo={this.archiveTodo} handleChange={this.handleChange} addTodo={this.addTodo} statusVal="Someday" />} />
+                <Route path="/Someday" render={() => <Someday todos={this.state.todos} completeTodo={this.completeTodo} archiveTodo={this.archiveTodo} handleChange={this.handleChange} addTodo={this.addTodo} statusVal="Someday" />} />
 
-                  <Route path="/Logbook" render={() => <Logbook todos={this.state.todos} completeTodo={this.completeTodo} archiveTodo={this.archiveTodo} handleChange={this.handleChange} statusVal="Logbook" />} />
+                <Route path="/Logbook" render={() => <Logbook todos={this.state.todos} completeTodo={this.completeTodo} archiveTodo={this.archiveTodo} handleChange={this.handleChange} statusVal="Logbook" />} />
 
-                  <Route path="/Trash" render={() => <Trash todos={this.state.todos} completeTodo={this.completeTodo} archiveTodo={this.archiveTodo} handleChange={this.handleChange} emptyTrash={this.emptyTrash} statusVal="Trash" />} />
-                </div>
+                <Route path="/Trash" render={() => <Trash todos={this.state.todos} completeTodo={this.completeTodo} archiveTodo={this.archiveTodo} handleChange={this.handleChange} emptyTrash={this.emptyTrash} statusVal="Trash" />} />
               </div>
             </div>
           </main>

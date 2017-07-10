@@ -16,7 +16,16 @@ class More extends React.Component {
 
     if (this.props.details.archived === false) {
       select = (<select
-        onChange={(e) => {this.props.handleChange(this.props.index, e.target.value, 'status')} }
+        onChange={(e) => {
+          if (e.target.value === 'Evening') {
+            this.props.handleChange(this.props.index, e.target.value, 'time');
+          } else if (e.target.value === 'Today') {
+            this.props.handleChange(this.props.index, e.target.value, 'time');
+            this.props.handleChange(this.props.index, e.target.value, 'status');
+          } else {
+            this.props.handleChange(this.props.index, e.target.value, 'status');
+          }
+        } }
         value={this.props.details.status}
         className="custom-select mr-2"
       >

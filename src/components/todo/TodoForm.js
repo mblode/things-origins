@@ -13,7 +13,6 @@ class TodoForm extends React.Component  {
       notes: this.notes.value,
       text: this.text.value,
       status: this.props.statusVal,
-      time: 'Today',
       completed: false,
       archived: false,
     }

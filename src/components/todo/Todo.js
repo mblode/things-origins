@@ -1,5 +1,6 @@
 import React from 'react';
 import onClickOutside from 'react-onclickoutside';
+import keydown from 'react-keydown';
 
 import More from './More';
 
@@ -13,6 +14,11 @@ class Todo extends React.Component {
       value: 'select',
       active: false,
     };
+  }
+
+  @keydown(46)
+  toggleHello() {
+    console.log('hello');
   }
 
   handleClickOutside = () => {
@@ -33,7 +39,7 @@ class Todo extends React.Component {
     return (
       <div className={`todo ${ this.state.active ? 'todo-active' : '' }`} onDoubleClick={this.toggleMore}>
         <div className="todo-main">
-          <input name="status" className="todo-check" type="checkbox" checked={details.completed} onChange={() => this.props.completeTodo(index)} />
+          <input className="todo-check" type="checkbox" checked={details.completed} onChange={() => this.props.completeTodo(index)} />
           <input
             type="text"
             placeholder="New To-Do"
