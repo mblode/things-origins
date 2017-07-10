@@ -1,13 +1,13 @@
 import React from 'react';
-import TodoForm from '../todo/TodoForm';
 import TodoList from '../todo/TodoList';
+import TodoForm from '../todo/TodoForm';
 
-const Inbox = (props) => {
+const ProjectList = (props) => {
   return (
     <div>
       <div className="page-header">
-        <h3 className="list-title">Inbox</h3>
-        <TodoForm addTodo={props.addTodo} statusVal="Inbox" />
+        <h3 className="list-title">Project</h3>
+        <TodoForm addTodo={props.addTodo} projectVal={props.index} />
       </div>
       <div className="page-content">
         <TodoList
@@ -16,11 +16,11 @@ const Inbox = (props) => {
           completeTodo={props.completeTodo}
           archiveTodo={props.archiveTodo}
           handleChange={props.handleChange}
-          statusVal={props.statusVal}
+          projectVal={props.index}
         />
       </div>
     </div>
   );
-};
+}
 
-export default Inbox;
+export default ProjectList;

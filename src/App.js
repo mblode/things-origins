@@ -10,6 +10,8 @@ import Someday from './components/lists/Someday';
 import Logbook from './components/lists/Logbook';
 import Trash from './components/lists/Trash';
 
+import ProjectList from './components/projects/ProjectList';
+
 import base from './base';
 
 class App extends React.Component {
@@ -17,6 +19,7 @@ class App extends React.Component {
     super(props);
 
     this.addTodo = this.addTodo.bind(this);
+    this.addProject = this.addProject.bind(this);
     this.completeTodo = this.completeTodo.bind(this);
     this.archiveTodo = this.archiveTodo.bind(this);
     this.emptyTrash = this.emptyTrash.bind(this);
@@ -52,8 +55,8 @@ class App extends React.Component {
     this.setState({ todos });
   }
 
-  addTodo = (project) => {
-    const projects = { ...this.state.todos };
+  addProject = (project) => {
+    const projects = { ...this.state.projects };
     const timestamp = Date.now();
     projects[`project-${timestamp}`] = project;
     projects[`project-${timestamp}`].timestamp = timestamp;
@@ -85,6 +88,8 @@ class App extends React.Component {
       todos[key].notes = value;
     } else if (type === 'text') {
       todos[key].text = value;
+    } else if (type === 'project') {
+      todos[key].project = value;
     }
 
     this.setState({ todos });
@@ -99,16 +104,22 @@ class App extends React.Component {
     this.setState({ todos: notArchived });
   }
 
+  deleteProject = (key) => {
+    const projects = { ...this.state.projects };
+    delete projects[key];
+    this.setState({ projects });
+  }
+
   render() {
     return (
       <BrowserRouter>
         <div className="App">
-          <Header todos={this.state.todos} />
+          <Header todos={this.state.todos} projects={this.state.projects} addProject={this.addProject} />
 
           <main className="cont">
             <div className="row page-main">
               <div className="col-12">
-                <Route exact path="/" render={() => <Inbox todos={this.state.todos} completeTodo={this.completeTodo} archiveTodo={this.archiveTodo} handleChange={this.handleChange} addTodo={this.addTodo} statusVal="Inbox" />} />
+                <Route exact path="/" render={() => <Inbox todos={this.state.todos} projects={this.state.projects} completeTodo={this.completeTodo} archiveTodo={this.archiveTodo} handleChange={this.handleChange} addTodo={this.addTodo} statusVal="Inbox" />} />
 
                 <Route path="/Today" render={() => <Today todos={this.state.todos} completeTodo={this.completeTodo} archiveTodo={this.archiveTodo} handleChange={this.handleChange} addTodo={this.addTodo} statusVal="Today" />} />
 
@@ -119,6 +130,11 @@ class App extends React.Component {
                 <Route path="/Logbook" render={() => <Logbook todos={this.state.todos} completeTodo={this.completeTodo} archiveTodo={this.archiveTodo} handleChange={this.handleChange} statusVal="Logbook" />} />
 
                 <Route path="/Trash" render={() => <Trash todos={this.state.todos} completeTodo={this.completeTodo} archiveTodo={this.archiveTodo} handleChange={this.handleChange} emptyTrash={this.emptyTrash} statusVal="Trash" />} />
+
+                {
+                  Object.keys(this.state.projects)
+                  .map(key => (<Route path="/projects/:id?" key={key} index={key} render={() => <ProjectList todos={this.state.todos} projects={this.state.projects} completeTodo={this.completeTodo} archiveTodo={this.archiveTodo} handleChange={this.handleChange} addTodo={this.addTodo} index={this.state.projects[key].timestamp} />} />))
+                }
               </div>
             </div>
           </main>

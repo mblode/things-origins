@@ -22,8 +22,15 @@ const TodoList = (props) => {
         }).filter((key) => {
           if (props.statusVal === 'Logbook' || props.statusVal === 'Trash') {
             return props.todos[key];
+          } else if (props.statusVal === undefined) {
+            return props.todos[key].status === '';
           }
           return props.todos[key].status === props.statusVal;
+        }).filter((key) => {
+          if (props.projectVal === undefined) {
+            return props.todos[key].project === '';
+          }
+          return props.todos[key].projectVal === props.projectValVal;
         })
         .map(key => (<Todo
           key={key}
@@ -32,6 +39,7 @@ const TodoList = (props) => {
           completeTodo={props.completeTodo}
           archiveTodo={props.archiveTodo}
           handleChange={props.handleChange}
+          projects={props.projects}
         />))
       }
     </div>

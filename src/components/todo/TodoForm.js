@@ -8,13 +8,28 @@ class TodoForm extends React.Component  {
 
   createTodo(event) {
     event.preventDefault();
+    
+    let statusVar = '';
+    if (this.props.statusVal === undefined) {
+      statusVar = '';
+    } else {
+      statusVar = this.props.statusVal;
+    }
+
+    let projectVar = '';
+    if (this.props.projectVal === undefined) {
+      projectVar = '';
+    } else {
+      projectVar = this.props.projectVal;
+    }
 
     const todo = {
       notes: this.notes.value,
       text: this.text.value,
-      status: this.props.statusVal,
+      status: statusVar,
       completed: false,
       archived: false,
+      project: projectVar,
     }
 
     this.props.addTodo(todo);

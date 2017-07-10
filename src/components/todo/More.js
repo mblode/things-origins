@@ -48,6 +48,23 @@ class More extends React.Component {
         />
 
         {select}
+
+        <select
+          onChange={(e) => {this.props.handleChange(this.props.index, e.target.value, 'project');} }
+          value={this.props.details.project}
+          className="custom-select mr-2"
+        >
+          <option value="">No Project</option>
+          {
+            Object.keys(this.props.projects)
+            .map(key => (
+              <option key={key} value={this.props.projects[key].timestamp}>
+                {this.props.projects[key].title}
+              </option>
+            ))
+          }
+        </select>
+
         <button onClick={() => this.props.archiveTodo(this.props.index)} className="btn btn-secondary">{buttonText}</button>
       </div>
     );

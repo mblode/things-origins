@@ -48,7 +48,7 @@ class Todo extends React.Component {
             onChange={e => this.props.handleChange(this.props.index, e.target.value, 'text')}
           />
 
-          { this.state.active ? <More details={details} index={index} archiveTodo={this.props.archiveTodo} active={this.state.active} handleChange={this.props.handleChange} /> : null }
+          { this.state.active ? <More projects={this.props.projects} details={details} index={index} archiveTodo={this.props.archiveTodo} active={this.state.active} handleChange={this.props.handleChange} /> : null }
         </div>
       </div>
     );

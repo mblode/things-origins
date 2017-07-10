@@ -1,5 +1,6 @@
 import React from 'react';
 import { NavLink } from 'react-router-dom';
+import AddProject from './projects/AddProject';
 
 class Header extends React.Component {
   render () {
@@ -30,7 +31,7 @@ class Header extends React.Component {
     );
     if (lengthTrash !== 0) {
       trash = (
-        <li className="nav-item">
+        <li className="nav-item mb-3">
           <NavLink to="/Trash">
             <span className="nav-link">Trash</span>
           </NavLink>
@@ -45,6 +46,7 @@ class Header extends React.Component {
             <header className="nav-sidebar">
               <nav className="nav">
                 <ul className="nav flex-column sidebar-ul">
+                  <AddProject addProject={this.props.addProject} />
                   <li className="nav-item mb-3">
                     <NavLink exact to="/">
                       <span className="nav-link">Inbox</span>
@@ -70,6 +72,17 @@ class Header extends React.Component {
                   </li>
                   {logbook}
                   {trash}
+
+                  {
+                    Object.keys(this.props.projects)
+                    .map(key => (
+                      <li className="nav-item" key={key}>
+                        <NavLink to={'/projects/'+this.props.projects[key].timestamp }>
+                          <span className="nav-link">{this.props.projects[key].title}</span>
+                        </NavLink>
+                      </li>
+                    ))
+                  }
                 </ul>
               </nav>
             </header>
