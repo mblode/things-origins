@@ -79,15 +79,14 @@ textarea {
 .nav-sidebar {
   background: #F9FAFA;
   position: fixed;
-  padding: 0 16px;
-  height: 100%;
-  left: 0px;
-  border-right: 0.5px solid rgba(0, 0, 0, .03);
-  z-index: 100;
-}
-
-.nav {
-  padding-top: 32px;
+  overflow-y: scroll;
+  height: calc(100% - 35px);
+  top: 0;
+  bottom: 0;
+  left: 0;
+  border-right: 1px solid rgba(0, 0, 0, .05);
+  z-index: 1;
+  padding: 2rem 0;
 }
 
 .nav div div {
@@ -96,7 +95,8 @@ textarea {
 }
 
 .sidebar-ul {
-  width: 250px;
+  width: 282px;
+  padding: 0 1rem;
 }
 
 .sidebar-ul li a {
@@ -133,7 +133,7 @@ textarea {
   background: #F9FAFA;
   padding: 48px;
   padding-bottom: 16px;
-  border-bottom: 0.5px solid rgba(0, 0, 0, .03);
+  border-bottom: 0.5px solid rgba(0, 0, 0, .05);
 }
 
 .list-title {
@@ -212,6 +212,7 @@ textarea {
   border: none;
   margin: 0;
   padding: 0;
+  width: calc(100% - 2rem);
 }
 
 .todo-notes {
@@ -267,7 +268,23 @@ textarea {
   resize: none;
 }
 
+.nav-sidebar-footer {
+  background: #F9FAFA;
+  position: fixed;
+  bottom: 0;
+  left: 0;
+  width: 282px;
+  padding: 0.25rem 1rem;
+  border-top: 1px solid rgba(0, 0, 0, .05);
+  border-right: 1px solid rgba(0, 0, 0, .05);
+  z-index: 2;
+}
+
 .add-project {
-  position: absolute;
-  bottom: 1rem;
+  background: transparent;
+  color: rgba(0, 0, 0, .5);
+}
+
+.add-project:hover {
+  border: 1px solid rgba(0, 0, 0, .12);
 }

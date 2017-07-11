@@ -31,7 +31,7 @@ class Header extends React.Component {
     );
     if (lengthTrash !== 0) {
       trash = (
-        <li className="nav-item mb-3">
+        <li className="nav-item">
           <NavLink to="/Trash">
             <span className="nav-link">Trash</span>
           </NavLink>
@@ -40,11 +40,8 @@ class Header extends React.Component {
     }
 
     return (
-      <section className="nav-cont">
-        <div className="row">
-          <div className="col-12">
-            <header className="nav-sidebar">
-              <nav className="nav">
+      <header>
+            <nav className="nav-sidebar">
                 <ul className="nav flex-column sidebar-ul">
                   <li className="nav-item mb-3">
                     <NavLink exact to="/">
@@ -77,6 +74,7 @@ class Header extends React.Component {
                   </li>
                   {logbook}
                   {trash}
+                  <div className="mb-3"></div>
 
                   {
                     Object.keys(this.props.projects)
@@ -84,18 +82,17 @@ class Header extends React.Component {
                       <li className="nav-item" key={key}>
                         <NavLink to={'/projects/'+this.props.projects[key].timestamp }>
                           <span className="nav-link">{this.props.projects[key].title}</span>
+                          <ListLength todos={this.props.todos} project={this.props.projects[key].timestamp} />
                         </NavLink>
                       </li>
                     ))
                   }
-                  <AddProject addProject={this.props.addProject}/>
                 </ul>
-              </nav>
-
-            </header>
-          </div>
-        </div>
-      </section>
+            </nav>
+            <footer className="nav-sidebar-footer">
+              <AddProject addProject={this.props.addProject}/>
+            </footer>
+      </header>
     );
   }
 }
@@ -112,8 +109,15 @@ const ListLength = (props) => {
               props.todos[key].status === 'Today' ||
               props.todos[key].status === 'Evening'
             );
-          }
+          } else if (props.status === undefined) {
+            return props.todos[key].status === '';
+          } 
           return props.todos[key].status === props.status
+        }).filter((key) => {
+          if (props.project === undefined) {
+            return props.todos[key].project === '';
+          }
+          return props.todos[key].project == props.project
         })
         .map(key => props.todos[key])
         .length

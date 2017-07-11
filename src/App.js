@@ -42,6 +42,7 @@ class App extends React.Component {
     this.ref = base.syncState('/projects', {
       context: this,
       state: 'projects',
+      redirect: false,
     });
   }
 
@@ -120,19 +121,12 @@ class App extends React.Component {
     this.setState({ todos: notArchived });
   }
 
-  deleteProject = (key) => {
-    const projects = { ...this.state.projects };
-    delete projects[key];
-    this.setState({ projects });
-  }
-
   render() {
     return (
       <BrowserRouter>
         <div className="App">
           <Header todos={this.state.todos} projects={this.state.projects} addProject={this.addProject} />
           
-
           <main className="cont">
             <div className="row page-main">
               <div className="col-12">
@@ -151,7 +145,7 @@ class App extends React.Component {
 
                 <Route path="/Trash" render={() => <Trash todos={this.state.todos} projects={this.state.projects} completeTodo={this.completeTodo} archiveTodo={this.archiveTodo} handleChange={this.handleChange} emptyTrash={this.emptyTrash} statusVal="Trash" />} />
 
-                <Route exact path="/projects/:id?" render={(props) => <ProjectList todos={this.state.todos} projects={this.state.projects} completeTodo={this.completeTodo} archiveTodo={this.archiveTodo} handleChange={this.handleChange} projectChange={this.projectChange} addTodo={this.addTodo} {...props.match.params} />}  />
+                <Route exact path="/projects/:id?" render={(props) => <ProjectList todos={this.state.todos} projects={this.state.projects} completeTodo={this.completeTodo} archiveTodo={this.archiveTodo} handleChange={this.handleChange} projectChange={this.projectChange} addTodo={this.addTodo} {...props.match.params} />} />
               </div>
             </div>
           </main>
