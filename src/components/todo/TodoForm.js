@@ -41,7 +41,7 @@ class TodoForm extends React.Component  {
     return (
       <form ref={(input) => {this.todoForm = input;} } onSubmit={(e) => this.createTodo(e)} className="todo-form">
         <input className="todo-check" type="checkbox" ref={(input) => {this.checkbox = input;} } />
-        <input type="text" placeholder="New To-Do" ref={(input) => {this.text = input;} } />
+        <input type="text" className="todo-input" placeholder="New To-Do" ref={(input) => {this.text = input;} } />
         <textarea placeholder="Notes" ref={(input) => {this.notes = input;} } className="todo-notes" />
       </form>
     );

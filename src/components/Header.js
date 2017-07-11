@@ -109,13 +109,13 @@ const ListLength = (props) => {
               props.todos[key].status === 'Today' ||
               props.todos[key].status === 'Evening'
             );
-          } else if (props.status === undefined) {
-            return props.todos[key].status === '';
+          } else if (props.status === undefined && props.project) {
+            return props.todos[key]
           } 
           return props.todos[key].status === props.status
         }).filter((key) => {
-          if (props.project === undefined) {
-            return props.todos[key].project === '';
+          if (props.project === undefined && props.status) {
+            return props.todos[key]
           }
           return props.todos[key].project == props.project
         })

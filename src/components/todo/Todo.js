@@ -41,7 +41,7 @@ class Todo extends React.Component {
     return (
       <div className={`todo ${ this.state.active ? 'todo-active' : '' }`} onDoubleClick={this.toggleMore}>
         <div className="todo-main">
-          <input className={`todo-check ${title ? 'todo-input-project' : '' }`} type="checkbox" checked={details.complete} onChange={() => this.props.completeTodo(index)} />
+          <input className={`todo-check ${title ? 'todo-input-project' : '' }`} type="checkbox" checked={details.complete ? 'checked' : ''} onChange={() => this.props.completeTodo(index)} />
           <input
             type="text"
             placeholder="New To-Do"

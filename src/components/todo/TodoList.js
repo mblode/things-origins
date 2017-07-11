@@ -8,7 +8,10 @@ const TodoList = (props) => {
       {
         Object.keys(props.todos)
         .filter((key) => {
-          if (props.completedVal === undefined) {
+          if (props.completedVal === undefined && props.archivedVal) {
+            return props.todos[key]
+          }
+          else if (props.completedVal === undefined ) {
             return props.todos[key].completed === false;
           }
 
@@ -22,13 +25,13 @@ const TodoList = (props) => {
         }).filter((key) => {
           if (props.statusVal === 'Logbook' || props.statusVal === 'Trash') {
             return props.todos[key];
-          } else if (props.statusVal === undefined) {
-            return props.todos[key].status === '';
+          } else if (props.statusVal === undefined && props.projectVal) {
+            return props.todos[key]
           }
           return props.todos[key].status === props.statusVal;
         }).filter((key) => {
-          if (props.projectVal === undefined) {
-            return props.todos[key].project === '';
+          if (props.projectVal === undefined && props.statusVal) {
+            return props.todos[key]
           }
           return props.todos[key].project === props.projectVal;
         })

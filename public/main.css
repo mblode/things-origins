@@ -158,12 +158,6 @@ textarea {
   margin-bottom: 0.5rem;
 }
 
-.todo-form input {
-  border: none;
-  outline: none;
-  caret-color: #07C;
-}
-
 .todo-form-status {
   display: block;
   padding-left: 24px;
