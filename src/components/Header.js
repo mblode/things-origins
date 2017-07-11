@@ -1,6 +1,12 @@
 import React from 'react';
 import { NavLink } from 'react-router-dom';
+
 import AddProject from './projects/AddProject';
+import inbox from '../svg/inbox.svg';
+import today from '../svg/today.svg';
+import later from '../svg/later.svg';
+import logbook from '../svg/logbook.svg';
+import trash from '../svg/trash.svg';
 
 class Header extends React.Component {
   render () {
@@ -16,7 +22,10 @@ class Header extends React.Component {
       logbook = (
         <li className="nav-item">
           <NavLink to="/Logbook">
-            <span className="nav-link">Logbook</span>
+            <div className="nav-link">
+              <img src={logbook} alt="logbook"/>
+              <span>Logbook</span>
+            </div>
           </NavLink>
         </li>
       );
@@ -33,7 +42,10 @@ class Header extends React.Component {
       trash = (
         <li className="nav-item">
           <NavLink to="/Trash">
-            <span className="nav-link">Trash</span>
+            <div className="nav-link">
+              <img src={trash} alt="trash"/>
+              <span>Trash</span>
+            </div>
           </NavLink>
         </li>
       );
@@ -45,25 +57,37 @@ class Header extends React.Component {
                 <ul className="nav flex-column sidebar-ul">
                   <li className="nav-item mb-3">
                     <NavLink exact to="/">
-                      <span className="nav-link">Inbox</span>
+                      <div className="nav-link">
+                        <img src={inbox} alt="inbox"/>
+                        <span>Inbox</span>
+                      </div>
                       <ListLength todos={this.props.todos} status="Inbox" />
                     </NavLink>
                   </li>
                   <li className="nav-item">
                     <NavLink to="/Today">
-                      <span className="nav-link">Today</span>
+                      <div className="nav-link">
+                        <img src={today} alt="today"/>
+                        <span>Today</span>
+                      </div>
                       <ListLength todos={this.props.todos} status="Today" />
                     </NavLink>
                   </li>
                   <li className="nav-item">
                     <NavLink to="/Next">
-                      <span className="nav-link">Next</span>
+                      <div className="nav-link">
+                        <img src={later} alt="next"/>
+                        <span>Next</span>
+                      </div>
                       <ListLength todos={this.props.todos} status="Next" />
                     </NavLink>
                   </li>
                   <li className="nav-item">
                     <NavLink to="/Later">
-                      <span className="nav-link">Later</span>
+                      <div className="nav-link">
+                        <img src={later} alt="later"/>
+                        <span>Later</span>
+                      </div>
                       <ListLength todos={this.props.todos} status="Later" />
                     </NavLink>
                   </li>
