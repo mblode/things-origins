@@ -50,6 +50,10 @@ class App extends React.Component {
     base.removeBinding(this.ref);
   }
 
+  componentWillUpdate() {
+    document.title = 'Hello';
+  }
+
   addTodo = (todo) => {
     const todos = { ...this.state.todos };
     const timestamp = Date.now();
